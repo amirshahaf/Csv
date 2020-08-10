@@ -1,0 +1,9 @@
+flask
+gunicorn
+os
+werkzeug.utils
+csv
+glob 
+shutil
+pathlib
+concurrent.futures

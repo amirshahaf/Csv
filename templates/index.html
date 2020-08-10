@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Csv checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>html, body { height: 100%; }</style>
+</head>
+<body style="background-image: url('{{ url_for('static', filename='background.png') }}'); background-repeat: repeat; background-position: center;">
+
+<div class="text-center">
+    <img class="mt-4 mb-4" src="{{ url_for('static', filename='logo.png') }}" style="width: 15%;">
+</div>
+
+<form method="post" id='form' action="/process" enctype="multipart/form-data">
+<div class="container">
+
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Files to be compared.</h4>
+          </div>
+
+          <div class="card-body">
+            <div id="directory_a_files"></div>
+          </div>
+
+          <div class="card-footer">
+              <div class="input-group">
+                  <input type="file" id="directory_a" name="directory_a[]" multiple="true" autocomplete="off" accept=".csv" onchange="updateList('directory_a')" required>
+              </div>
+          </div>
+        </div>
+
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Files to compare to.</h4>
+          </div>
+
+          <div class="card-body">
+            <div id="directory_b_files"></div>
+          </div>
+
+          <div class="card-footer">
+              <div class="input-group">
+                  <input type="file" id="directory_b" name="directory_b[]" multiple="true" autocomplete="off" accept=".csv" onchange="javascript:updateList('directory_b')" required>
+              </div>
+          </div>
+        </div>
+
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Result</h4>
+          </div>
+
+          <div class="card-body">
+             <div id="result"></div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="mt-4 text-center">
+        <div class="form-group">
+            <label for="match">Similarity percent:</label>
+            <input type="number" id="match" name="match" min="0" max="100" value="90" required>
+        </div>
+        <button type="submit" class="btn btn-primary">submit</button>
+      </div>
+</div>
+</form>
+
+</body>
+</html>
+
+
